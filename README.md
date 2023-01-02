@@ -35,6 +35,7 @@ Create a service account key
 
 ### Terraform
 
-Install using [these instructions](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+* Install using [these instructions](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+* Run `cd ./terraform && terraform init` in the Terminal inside the project folder
 
 
