@@ -39,3 +39,9 @@ Create a service account key
 * Run `cd ./terraform && terraform init` in the Terminal inside the project folder
 
 
+
+## Running Server
+
+* Inside the project folder run `cd ./terraform && terraform apply`
+* In the terminal, there will be an output called "Web-server-URL" that will have a link to the url the app will eventually be listening on
+* TO BE CREATED: set up flask to listen at the website in the output
