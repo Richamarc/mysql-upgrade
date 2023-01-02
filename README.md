@@ -31,7 +31,7 @@ Create a service account key
 	• Click "Create" to create the key and save the key file to your system.
 	You can read more about service account keys in [Google's documentation](https://cloud.google.com/iam/docs/creating-managing-service-account-keys).
 
-	* Add private key to `.env` file or as separate file - then add it to `.gitignore` to ensure not to publically upload it.
+	* Add private key as separate file inside `slack-app/terraform` folder called `gcp-private.json` - then add it to `.gitignore` if necessary to ensure not to publically upload it.
 
 ### Terraform
 
