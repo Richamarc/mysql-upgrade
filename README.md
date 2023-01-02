@@ -4,7 +4,7 @@
 
 This project is designed to automatically create a running instance of a slack app using Flask, Terraform, Ansible, and GCP.
 
-## Tool Set-Up Instructions
+## Tech Requirements - Set-Up Instructions
 
 ### GCP
 
@@ -29,5 +29,12 @@ Create a service account key
 	• In the drop down menu, select "Create new key".
 	• Leave the "Key Type" as JSON.
 	• Click "Create" to create the key and save the key file to your system.
-	You can read more about service account keys in Google's documentation.
+	You can read more about service account keys in [Google's documentation](https://cloud.google.com/iam/docs/creating-managing-service-account-keys).
+
+	* Add private key to `.env` file or as separate file - then add it to `.gitignore` to ensure not to publically upload it.
+
+### Terraform
+
+Install using [these instructions](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+
 
