@@ -1,3 +1,7 @@
 terraform/gcp-private.json
 .terraform*
 terraform-provider-google_v3.5.0_x5
+terraform.tfstate
+terraform.tfstate.backup
+.venv/
+.env
