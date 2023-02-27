@@ -35,11 +35,15 @@ You can read more about service account keys in [Google's documentation](https:/
 * Install using [these instructions](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
 * Run `cd ./terraform && terraform init` in the Terminal inside the project folder
 
-
-
 ## Running Server
 
 * Inside the project folder run `cd ./terraform && terraform apply`
+* Once complete, run `cd ./../ansible && ansible-playbook ./playbooks/01-python-install.yaml`
+* Then run `ansible-playbook ./playbooks/02-load-app.yaml` 
 * In the terminal, there will be an output called "Web-server-URL" that will have a link to the url the app will eventually be listening on
-* TO BE CREATED: set up flask to listen at the website in the output
+* TO BE CREATED: automated running of bolt-app
 * DEV NOTE [for my own future reference]: if using WSL, can come accross time sync issue between windows and WSL -- to check if they're out of sync, enter `$ date` into terminal and compare the time. If they're out of sync, use the command `sudo hwclock -s`
+
+## Using Google Cloud SDK Cli
+
+* Install using [these instructions](https://cloud.google.com/sdk/docs/install#linux)

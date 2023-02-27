@@ -1,0 +1,9 @@
+---
+plugin: gcp_compute
+projects:
+  - bathtub-pilot
+auth_kind: serviceaccount
+service_account_file: ./../terraform/gcp-private.json
+keyed_groups:
+  - key: kind
+    prefix: kind

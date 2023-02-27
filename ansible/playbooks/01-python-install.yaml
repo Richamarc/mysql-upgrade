@@ -1,0 +1,30 @@
+- name: install setup packages
+  hosts: kind_compute_instance
+  vars: 
+    linux_packages:
+      - build-essential
+      - python3-pip
+      - rsync
+    pip_packages:
+      - slack_bolt
+      - python-dotenv
+
+  tasks:
+
+    - name: "Update package cache"
+      apt:
+        update_cache: yes
+      become: true
+
+    - name: "Install base linux packages"
+      package:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ linux_packages }}"
+      become: true
+
+    - name: "Install pip packages"
+      ansible.builtin.pip:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ pip_packages }}"

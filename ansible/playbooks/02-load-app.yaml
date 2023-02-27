@@ -1,0 +1,13 @@
+- name: run slack app on bolt
+  hosts: kind_compute_instance
+  
+  tasks:
+    - name: add bolt app folder
+      copy:
+        src: ./../../bolt-app/
+        dest: ~/bolt-app/
+
+    # - name: run the slack_bolt app
+    #   shell: 'python3 ./app.py'
+    #   args:
+    #     chdir: ~/bolt-app/
