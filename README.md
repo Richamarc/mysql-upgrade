@@ -1,8 +1,8 @@
-# Instant Slack App
+# Instant MySQL 5.7 Server
 
 ## Description
 
-This project is designed to automatically create a running instance of a slack app using Flask, Terraform, Ansible, and GCP.
+This project is designed to automatically create a running instance of MySQL 5.7 to test running ansible upgrade scripts on it.
 
 ## Tech Requirements - Set-Up Instructions
 
