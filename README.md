@@ -6,6 +6,11 @@ This project is designed to automatically create a running instance of MySQL 5.7
 
 ## Tech Requirements - Set-Up Instructions
 
+### Clone repo
+
+* `git clone https://github.com/Richamarc/mysql-upgrade.git`
+* `cd mysql-upgrade`
+
 ### GCP
 
 * Create a GCP [account](https://console.cloud.google.com/getting-started)
