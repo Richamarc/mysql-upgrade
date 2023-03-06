@@ -26,6 +26,11 @@ This project is designed to automatically create a running instance of MySQL 5.7
     * The private key should be in the .gitignore file - but double check and don't upload it to github just in case! You can read more about service account keys in [Google's documentation](https://cloud.google.com/iam/docs/creating-managing-service-account-keys).
 * Rename all references to `bathtub-pilot` in the code to your project name: `sed -i 's/bathtub-pilot/mysql-upgrade-[your-name]/g' ./ansible/inventory/00-gcp.yaml ./terraform/main.tf`
   * if you're on mac, run: `sed -i '' -e 's/bathtub-pilot/mysql-upgrade-[your-name]/g' ansible/inventory/00-gcp.yaml terraform/main.tf`
+* Create a new ssh key: `ssh-keygen -t rsa -f ~/.ssh/gcloud_project.mysql_upgrade_[your-name] -b 2048`
+* Add the ssh public key to the project so that Ansible can run your user: Run `gcloud compute os-login ssh-keys add --key-file ~/.ssh/gcloud_project.mysql_upgrade_[your-name].pub --project mysql-upgrade-[your-name] --ttl 90d`
+* Modify `ansible/ansible.cfg`'s private key file and remote user with your own - the remote user is your gcloud email address with the '@' and '.' replaced by '_' 
+* make sure you're in the ansible directory, then run `ansible-playbook ./playbooks/01-python-install.yaml` to test
+
 
 ### Terraform
 
