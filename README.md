@@ -11,6 +11,16 @@ This project is designed to automatically create a running instance of MySQL 5.7
 * `git clone https://github.com/Richamarc/mysql-upgrade.git`
 * `cd mysql-upgrade`
 
+### Terraform
+
+* Install using [these instructions](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+* Run `cd ./terraform && terraform init` in the Terminal inside the project folder
+
+### Ansible
+
+* If on linux, [use this guide](https://docs.ansible.com/ansible/latest/installation_guide/installation_distros.html)
+* If on mac `brew install ansible`
+
 ### GCP
 
 * Create a GCP [account](https://console.cloud.google.com/getting-started)
@@ -30,12 +40,6 @@ This project is designed to automatically create a running instance of MySQL 5.7
 * Add the ssh public key to the project so that Ansible can run your user: Run `gcloud compute os-login ssh-keys add --key-file ~/.ssh/gcloud_project.mysql_upgrade_[your-name].pub --project mysql-upgrade-[your-name] --ttl 90d`
 * Modify `ansible/ansible.cfg`'s private key file and remote user with your own - the remote user is your gcloud email address with the '@' and '.' replaced by '_' 
 * make sure you're in the ansible directory, then run `ansible-playbook ./playbooks/01-python-install.yaml` to test
-
-
-### Terraform
-
-* Install using [these instructions](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
-* Run `cd ./terraform && terraform init` in the Terminal inside the project folder
 
 ## Provisioning and configuring server
 
