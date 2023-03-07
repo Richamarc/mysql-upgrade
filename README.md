@@ -20,6 +20,7 @@ This project is designed to automatically create a running instance of MySQL 5.7
 
 * If on linux, [use this guide](https://docs.ansible.com/ansible/latest/installation_guide/installation_distros.html)
 * If on mac `brew install ansible`
+* You may have to reinstall the google-auth python plugin to get ansible connecting properly: `sudo pip3 install google-auth` 
 
 ### GCP
 
