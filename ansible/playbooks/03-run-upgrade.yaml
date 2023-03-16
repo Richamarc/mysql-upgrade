@@ -1,0 +1,5 @@
+---
+# - name: install setup packages
+- hosts: all
+  roles: 
+    - role: '../roles/mysql-upgrade'
