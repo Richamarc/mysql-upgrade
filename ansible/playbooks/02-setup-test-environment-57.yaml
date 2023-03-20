@@ -2,4 +2,4 @@
 # - name: install setup packages
 - hosts: all
   roles: 
-    - role: '../roles/mysql-percona-upgrade-57-to-80'
+    - role: '../roles/mysql-percona-setup-57'
