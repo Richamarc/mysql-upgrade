@@ -1,0 +1,13 @@
+---
+# tasks for pre-upgrade checks
+
+- name: Check if MySQL 8 is installed
+  command: mysql --version
+  register: mysql_version
+  failed_when: false
+  changed_when: false
+
+- name: Print fail message if MySQL 8.0 installed
+  fail: 
+    msg: "MySQL 8.0 is already installed"
+  when: "'8.0.' in mysql_version.stdout"

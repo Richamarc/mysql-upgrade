@@ -1,0 +1,11 @@
+# Percona Server template configuration
+
+[client]
+# port                           = {{ percona_options.client_port}}
+# socket                         = {{ percona_options.socket }}
+
+[mysqld]
+datadir                        = {{ mysql_data_dir }}
+# tmpdir                         = {{ percona_options.tmpdir }}
+# socket                         = {{ percona_options.socket }}
+# port                           = {{ percona_options.server_port}}

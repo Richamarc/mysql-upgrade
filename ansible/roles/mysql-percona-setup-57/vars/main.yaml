@@ -1,0 +1,19 @@
+# variables
+
+mysql_data_dir: /var/lib/mysql
+# mysql_conf_file: /etc/mysql/my.cnf
+
+percona_package_version: 57
+percona_previous_version: 80
+
+percona_packages:
+  - Percona-Server-server-57 # package contains the server itself (the mysqld binary).
+  # - Percona-Server-shared-{{ percona_package_version }} # package includes the client shared library.
+  # - Percona-Server-client-{{ percona_package_version }} # package includes the client library.
+  - MySQL-python # package contains interface to MySQL database server for Python
+  # - percona-toolkit # can't get this one to install
+
+# this list should be double checked in the package management software on the client server
+previous_version_package_list:
+  - percona-server*
+

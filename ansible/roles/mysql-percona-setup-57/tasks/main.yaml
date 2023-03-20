@@ -1,0 +1,108 @@
+---
+# tasks file for percona-mysql-upgrade
+
+# tasks for pre-upgrade checks
+
+# - name: pre-upgrade tasks
+#   include_tasks: "pre_upgrade.yaml"
+
+- name: Check if MySQL 8 is installed
+  command: mysql --version
+  register: mysql_version
+  failed_when: false
+  changed_when: false
+
+- name: Print mysql version if it's installed
+  debug:
+    msg: The version of MySQL currently running is {{ mysql_version.stdout }}
+  when: mysql_version is defined
+
+- name: Print fail message if not RHEL-based system
+  fail:
+    msg: "OS needs to be RHEL-based"
+  when: '"RedHat" not in ansible_os_family'
+
+# tasks for uninstallation
+
+# if 8.0 is installed, uninstall it
+- name: Uninstall MySQL server and client packages
+  package:
+      name: "{{ item }}"
+      state: absent
+  with_items:
+      - "{{ previous_version_package_list }}"
+  when: (mysql_version is defined) and ('8.0.' in mysql_version.stdout)
+
+- name: remove the MySQL 8.0 file if exists
+  file:
+    state: absent
+    path: /var/lib/mysql
+  when: (mysql_version is defined) and ('8.0.' in mysql_version.stdout)
+
+#tasks for installation
+
+# - name: installation tasks
+#   include_tasks: "install.yaml"
+
+# RHEL based system installation
+
+- name: INSTALL REPO | Install Percona repo
+  become: yes
+  package:
+    state: present
+    name: "https://repo.percona.com/yum/percona-release-latest.noarch.rpm"
+    use: auto
+
+- name: Update Cache
+  package:
+    update_cache: yes
+
+- name: "Set percona package to latest release"
+  shell: "sudo percona-release setup ps-{{ percona_package_version }}"
+
+- name: INSTALL | Install Percona Server
+  become: yes
+  package:
+    state: present
+    name: "{{ item }}"
+    use: auto
+  with_items:
+    - "{{ percona_packages }}"
+
+# debian based system installation
+
+# - name: Update apt cache
+#   apt: update_cache=yes
+
+# - name: Add Percona repository key
+#   apt_key:
+#     url: https://www.percona.com/downloads/RPM-GPG-KEY-percona
+#     # url: https://repo.percona.com/apt/percona-release_latest.generic_all.deb
+#     state: present
+
+# - name: Add Percona repository
+#   become: yes
+#   apt_repository:
+#     repo: "deb https://repo.percona.com/apt {{ ansible_distribution_release }} main"
+#      # repo: "deb https://repo.percona.com/apt/percona-release_latest.generic_all.deb "
+#     state: present
+
+# - name: Adding percona source repository
+#   apt_repository:
+#     repo: 'deb-src http://repo.percona.com/apt {{ ansible_distribution_release }} main'
+#     state: present
+
+# - name: Update apt cache
+#   apt: update_cache=yes
+
+# - name: Run percona enable ps80
+#   shell: sudo /usr/bin/percona-release setup ps80
+
+# - name: Install Percona Server
+#   apt:
+#     name: percona-server-server
+
+- name: Start MYSQL service
+  service:
+    name: mysql
+    state: started
